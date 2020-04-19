@@ -1,0 +1,16 @@
+@import url(./__image/element__image.css);
+@import url(./__like/element__like.css);
+@import url(./__title/element__title.css);
+
+.element {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 282px;
+  display: grid;
+  grid-template-areas: 
+      'image image'
+      'title like';
+  grid-template-columns: 222px 60px;    
+  grid-template-rows: 282px 80px;
+}

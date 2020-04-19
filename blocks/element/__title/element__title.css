@@ -1,0 +1,10 @@
+.element__title {
+  color: black;
+  grid-area: title;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: auto auto auto 20px;
+  word-wrap: none;
+  text-overflow: ellipsis;
+}

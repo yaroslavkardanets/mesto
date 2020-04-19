@@ -1,0 +1,13 @@
+.popup__name {
+  margin-top: 52px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__name::placeholder {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
