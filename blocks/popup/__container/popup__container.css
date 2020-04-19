@@ -8,6 +8,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 36px;
   position: relative;
   box-sizing: border-box;

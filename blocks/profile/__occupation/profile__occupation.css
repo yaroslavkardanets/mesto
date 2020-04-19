@@ -5,3 +5,17 @@
   margin-top: 16px;
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 740px) {
+  .profile__occupation {
+    text-align: center; 
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .profile__occupation {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

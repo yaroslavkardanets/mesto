@@ -14,3 +14,16 @@
   padding-top: 36px;
   padding-bottom: 52px;
 }
+
+@media screen and (max-width: 900px) {
+  .profile {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
