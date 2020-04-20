@@ -16,67 +16,66 @@
         <header class="header">
           <img class="header__logo" src="./images/header/mesto-logo.svg" alt="Логотип проекта">
         </header>   
-         
-        <section class="popup">
-            <form class="popup__container">
-              <img class="popup__close-button" src="./images/popup/Close_Icon.svg" alt="Закрыть окно">
-              <h2 class="popup__title">Редактировать профиль</h2>
-              <input class="popup__name" type="text" name="nameInput" placeholder="Жак-Ив Кусто" value="Жак-Ив Кусто">
-              <input class="popup__occupation" type="text" name="profileOccupation" placeholder="Исследователь океана" value="Исследователь океана">
-              <button class="popup__submit-button" type="submit">Сохранить</button>
-            </form> 
-        </section>
-        
         <!-- блок profile -->
         <section class="profile">
-          <img class="profile__avatar" src="./images/profile/JYC_image.jpg" alt="Жак-Ив Кусто">
+          <img class="profile__avatar" src="./images/profile/jyc_image.jpg" alt="Жак-Ив Кусто">
           <div class="profile__info">
             <div class="profile__edit-wrapper">
               <h2 class="profile__name">Жак-Ив Кусто</h2>
-              <button class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" type="button" aria-label="edit"></button>
             </div>
             <p class="profile__occupation">Исследователь океана</p>
           </div>
-          <button class="profile__add-button"></button>
+          <button class="profile__add-button" type="button"></button>
         </section>      
-        
         <!-- блок elements -->
         <section class="elements">
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1088404-unsplash.jpg" alt="Заброшенный храм в Карачаевске">
             <h3 class="element__title">Карачаевск</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1404681-unsplash.jpg" alt="Вид на Эльбрус">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1556355-unsplash.jpg" alt="Ущелье и горы">
             <h3 class="element__title">Домбай</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1404681-unsplash.jpg" alt="Вид на Эльбрус">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1556355-unsplash.jpg" alt="Ущелье и горы">
             <h3 class="element__title">Домбай</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
           <div class="element">
             <img class="element__image" src="./images/elements/kirill-pershin-1088404-unsplash.jpg" alt="Заброшенный храм в Карачаевске">
             <h3 class="element__title">Карачаево-Черкессия</h3>
-            <img class="element__like" src="./images/elements/heart.svg" alt="Сердечко">
+            <button class="element__like" type="button"></button>
           </div>
         </section>
         <!-- блок footer -->
         <footer class="footer">
           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
+        <!-- блок popup -->
+        <section class="popup">
+          <form class="popup__container" name="form" method="post" action="#">
+            <button class="popup__close-button" type="reset"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто">
+            <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана">
+            <button class="popup__submit-button" type="submit">Сохранить</button>
+          </form> 
+        </section>
+
     </div>
     <script src="./js/script.js"></script>
 </body>

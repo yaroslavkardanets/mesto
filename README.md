@@ -8,4 +8,4 @@
 css: анимация, трансформация, флекс, грид, БЭМ.
 javascript: вызов и закрывание всплывающего окна.
 
-https://github.com/yaroslavkardanets/mesto.git
+https://yaroslavkardanets.github.io/YK_mesto/index.html
