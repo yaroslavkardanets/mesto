@@ -11,8 +11,8 @@ const profileOccupation = document.querySelector('.profile__occupation');
 // Открываем форму и присваиваиваем значения полям
 function openPopup () {
   popup.classList.add('popup_opened');
-  profileTitle.textContent = nameInput.value;
-  profileOccupation.textContent = jobInput.value;
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileOccupation.textContent;
 }
 
 // Закрываем форму
