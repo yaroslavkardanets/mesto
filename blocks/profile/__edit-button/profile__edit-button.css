@@ -8,11 +8,6 @@
   background-color: black;
   margin-top: 2.2%;
   cursor: pointer;
-  transition: all .5s ease-in;
-}
-
-.profile__edit-button:hover {
-  opacity: .6;
 }
 
 @media screen and (max-width: 430px) {

@@ -6,6 +6,7 @@
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
   width: 282px;
   display: grid;
   grid-template-areas: 
