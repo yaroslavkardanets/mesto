@@ -1,0 +1,23 @@
+.popup-cards__container {
+  width: 430px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  align-self: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 520px) {
+  .popup-cards__container {
+    max-width: 88vw;
+  }
+}

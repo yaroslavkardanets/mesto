@@ -7,5 +7,8 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/opacity/opacity.css);
+@import url(../blocks/popup-cards/popup-cards.css);
+
+/* Видимость popup (всегда внизу) */
+@import url(../blocks/popup-opened/popup-opened.css);
