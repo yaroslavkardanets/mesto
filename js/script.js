@@ -1,10 +1,10 @@
-// пременные profile
+// переменные profile
 const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 let profileTitle = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
-// popup профиля
+// переменные popup профиля
 const popup = document.querySelector('.popup');
 const formElement = document.querySelector('.popup__container');
 const popupTitle = document.querySelector('.popup__title');
@@ -12,6 +12,24 @@ const closeButton = document.querySelector('.popup__close-button');
 const submitButton = document.querySelector('.popup__submit-button');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_occupation');
+
+// переменные popup карточки
+const popupCards = document.querySelector('.popup_cards');
+const cardsElement = document.querySelector('.popup__container_cards');
+const closeButtonCards = document.querySelector('.popup__close-button_cards');
+const placeInput = document.querySelector('.popup__input_cards_place');
+const imageInput = document.querySelector('.popup__input_cards_image');
+const cardSubmitButton = document.querySelector('.popup__submit-button_cards');
+
+// переменные элементы карточек
+const elements = document.querySelector('.elements');
+const cardElement = document.querySelector('#card-element').content;
+
+// переменные popup просмотра фотографии
+const popupImage = document.querySelector('.popup_image');
+const closeImage = document.querySelector('.popup__close-button-image');
+const previewImage = document.querySelector('.popup__preview');
+const titleImage = document.querySelector('.popup__title-image');
 
 // Открываем форму профиля и присваиваиваем значения полям
 function openPopup () {
@@ -34,6 +52,7 @@ function formSubmitHandler (evt) {
     closePopup();
 }
 
+// массив карточек
 const initialCards = [
   {
       name: 'Архыз',
@@ -61,12 +80,7 @@ const initialCards = [
   }
 ];
 
-const elements = document.querySelector('.elements');
-const cardElement = document.querySelector('#card-element').content;
-const cardTitle = document.querySelector('.element__title');
-const cardImage = document.querySelector('.element__image');
-const cardLike = document.querySelector('.element__like');
-
+// карточки из массива
 function cardItem() {
   initialCards.forEach((item) => {
     const element = cardElement.cloneNode(true);
@@ -92,25 +106,10 @@ function cardItem() {
 }
 cardItem (initialCards); 
 
-const popupImage = document.querySelector('.popup_image');
-const closeImage = document.querySelector('.popup__close-button-image');
-const previewImage = document.querySelector('.popup__preview');
-const titleImage = document.querySelector('.popup__title-image');
-
-
 // Открываем фото
 function openPopupImage () {
   popupImage.classList.add('popup-opened');
-//  previewImage.src = cardImage.src;
-  titleImage.textContent = cardTitle.textContent;
 }
-
-const popupCards = document.querySelector('.popup_cards');
-const cardsElement = document.querySelector('.popup__container_cards');
-const closeButtonCards = document.querySelector('.popup__close-button_cards');
-const placeInput = document.querySelector('.popup__input_cards_place');
-const imageInput = document.querySelector('.popup__input_cards_image');
-const cardSubmitButton = document.querySelector('.popup__submit-button_cards');
 
 // Открываем попап создания карточки
 function openPopupCards () {
@@ -119,6 +118,7 @@ function openPopupCards () {
   imageInput.value = '';
 }
 
+// новые карточки
 function cardSubmitHandler (evt) {
   evt.preventDefault();
   const element = cardElement.cloneNode(true);
@@ -130,7 +130,6 @@ function cardSubmitHandler (evt) {
   element.querySelector('.element__trash').addEventListener('click', function (evt) {
     evt.target.closest('.element').remove();
   });
-  // Просмотр фотографии
   element.querySelector('.element__image').addEventListener('click', function (evt) {
     previewImage.setAttribute('src', evt.target.src);
     titleImage.textContent = placeInput.value;
@@ -140,11 +139,8 @@ function cardSubmitHandler (evt) {
   closePopup();
 }
 
-
+// слушатели
 cardsElement.addEventListener('submit', cardSubmitHandler);
-
-
-
 editButton.addEventListener('click', openPopup);
 addCardButton.addEventListener('click', openPopupCards);
 closeButton.addEventListener('click', closePopup);
