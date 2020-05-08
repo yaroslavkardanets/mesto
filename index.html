@@ -43,7 +43,7 @@
         <footer class="footer">
           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <!-- блок popup-title -->
+        <!-- блок popup-title --> 
         <section class="popup">
           <form class="popup__container" name="form" method="post" action="#">
             <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
@@ -54,26 +54,25 @@
           </form> 
         </section>
         <!-- блок popup-cards -->
-        <section class="popup-cards">
-          <form class="popup-cards__container" name="form" method="post" action="#">
-            <button class="popup-cards__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
-            <h2 class="popup-cards__title">Новое место</h2>
-            <input class="popup-cards__input popup-cards__input_place" type="text" name="placeInput" placeholder="Название">
-            <input class="popup-cards__input popup-cards__input_image" type="text" name="imageInput" placeholder="Ссылка на картинку">
-            <button class="popup-cards__submit-button" type="submit">Создать</button>
+        <section class="popup popup_cards">
+          <form class="popup__container popup__container_cards" name="form" method="post" action="#">
+            <button class="popup__close-button popup__close-button_cards opacity" type="reset" aria-label="Закрыть окно"></button>
+            <h2 class="popup__title popup__title_cards">Новое место</h2>
+            <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название">
+            <input class="popup__input popup__input_cards_image" type="text" name="imageInput" placeholder="Ссылка на картинку">
+            <button class="popup__submit-button popup__submit-button_cards" type="submit">Создать</button>
           </form> 
         </section>
-        <!-- блок popup-image 
-        <section class="popup-image">
-          <form class="popup__container" name="form" method="post" action="#">
-            <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
-            <h2 class="popup__title"></h2>
-            <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="" value="Жак-Ив Кусто">
-            <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана">
-            <button class="popup__submit-button" type="submit"></button>
-          </form> 
+        
+        <!-- блок popup-image -->
+        <section class="popup popup_image">
+          <div class="popup__container-image"> 
+            <button class="popup__close-button-image opacity" type="reset" aria-label="Закрыть окно"></button>
+            <img class="popup__preview" src="">
+            <h2 class="popup__title-image"></h2>
+          </div>
         </section>
-        -->
+        
     </div>
     <script src="./js/script.js"></script>
 </body>

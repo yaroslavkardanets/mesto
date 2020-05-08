@@ -5,6 +5,10 @@
 @import url(./__input/popup__input.css);
 @import url(./__input/_name/popup__input_name.css);
 @import url(./__input/_occupation/popup__input_occupation.css);
+@import url(./__container-image/popup__container-image.css);
+@import url(./__preview/popup__preview.css);
+@import url(./__title-image/popup__title-image.css);
+@import url(./__close-button-image/popup__close-button-image.css);
 
 .popup {
   width: 100%;
@@ -13,6 +17,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
+  display: flex;
   z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease-in-out;
 }
