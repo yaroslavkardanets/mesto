@@ -4,75 +4,77 @@
     <link rel="stylesheet" href="pages/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ярослав Карданец. Четвертая проектная работа на Яндекс Практикуме">
+    <meta name="description" content="Ярослав Карданец. Пятая проектная работа на Яндекс Практикуме">
     <meta name="keywords" content="html, css, javascript">
     <meta name="author" content="Ярослав Карданец">
     <title>Место</title>
     <base target="_blank">
 </head>
 <body>
-    <div class="page">
-        <!-- блок header -->
-        <header class="header">
-          <img class="header__logo" src="./images/header/mesto-logo.svg" alt="Логотип проекта">
-        </header>   
-        <!-- блок profile -->
-        <section class="profile">
-          <img class="profile__avatar" src="./images/profile/jycimage.jpg" alt="Жак-Ив Кусто">
-          <div class="profile__info">
-            <div class="profile__edit-wrapper">
-              <h2 class="profile__name">Жак-Ив Кусто</h2>
-              <button class="profile__edit-button opacity" type="button" aria-label="Редактировать"></button>
-            </div>
-            <p class="profile__occupation">Исследователь океана</p>
+  <div class="page">
+      <!-- блок header -->
+      <header class="header">
+        <img class="header__logo" src="./images/header/mesto-logo.svg" alt="Логотип проекта">
+      </header>   
+      <!-- блок profile -->
+      <main class="profile">
+        <img class="profile__avatar" src="./images/profile/jycimage.jpg" alt="Жак-Ив Кусто">
+        <div class="profile__info">
+          <div class="profile__edit-wrapper">
+            <h2 class="profile__name">Жак-Ив Кусто</h2>
+            <button class="profile__edit-button opacity" type="button" aria-label="Редактировать"></button>
+            <!-- Пока оставил кнопку на прежнем месте, но так, чтоб она не "приклеивалась" к кнопке "Добавить".
+            Во-первых не хочется отходить от изначального макета. Во-вторых думаю, что надо сохранить привязку 
+            к блоку с именем к которому она относится. Если все же ошибаюсь, готов найти иное решение. -->
           </div>
-          <button class="profile__add-button opacity" type="button" aria-label="Добавить"></button>
-        </section>      
-        <!-- блок elements -->
-        <section class="elements">
-          <template id="card-element">
-            <div class="element">
-              <button class="element__trash opacity" type="button" aria-label="Удалить"></button>
-              <img class="element__image" src="" alt="">
-              <h2 class="element__title"></h2>
-              <button class="element__like opacity" type="button" aria-label="Понравилось"></button>
-            </div>
+          <p class="profile__occupation">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button opacity" type="button" aria-label="Добавить"></button>
+      </main>      
+      <!-- блок elements -->
+      <main class="elements">
+        <template id="card-element">
+          <div class="element">
+            <button class="element__trash opacity" type="button" aria-label="Удалить"></button>
+            <img class="element__image" src="" alt="">
+            <h2 class="element__title"></h2>
+            <button class="element__like opacity" type="button" aria-label="Понравилось"></button>
+          </div>
         </template>
-        </section>
-        <!-- блок footer -->
-        <footer class="footer">
-          <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-        </footer>
-        <!-- блок popup-title --> 
-        <section class="popup">
-          <form class="popup__container" name="form" method="post" action="#">
-            <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто">
-            <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана">
-            <button class="popup__submit-button" type="submit">Сохранить</button>
-          </form> 
-        </section>
-        <!-- блок popup-cards -->
-        <section class="popup popup_cards">
-          <form class="popup__container popup__container_cards" name="form" method="post" action="#">
-            <button class="popup__close-button popup__close-button_cards opacity" type="reset" aria-label="Закрыть окно"></button>
-            <h2 class="popup__title popup__title_cards">Новое место</h2>
-            <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название">
-            <input class="popup__input popup__input_cards_image" type="text" name="imageInput" placeholder="Ссылка на картинку">
-            <button class="popup__submit-button popup__submit-button_cards" type="submit">Создать</button>
-          </form> 
-        </section>
-        <!-- блок popup-image -->
-        <section class="popup popup_image">
-          <div class="popup__container-image"> 
-            <button class="popup__close-button popup__close-button-image opacity" type="reset" aria-label="Закрыть окно"></button>
-            <img class="popup__preview" alt="">
-            <h2 class="popup__title-image"></h2>
-          </div>
-        </section>
-        
-    </div>
-    <script src="./js/script.js"></script>
+      </main>
+      <!-- блок footer -->
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>
+      <!-- блок popup-title --> 
+      <main class="popup">
+        <form class="popup__container" name="form" method="post" action="#">
+          <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто">
+          <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана">
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form> 
+      </main>
+      <!-- блок popup-cards -->
+      <main class="popup popup_cards">
+        <form class="popup__container popup__container_cards" name="form" method="post" action="#">
+          <button class="popup__close-button popup__close-button_cards opacity" type="reset" aria-label="Закрыть окно"></button>
+          <h2 class="popup__title popup__title_cards">Новое место</h2>
+          <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название">
+          <input class="popup__input popup__input_cards_image" type="text" name="imageInput" placeholder="Ссылка на картинку">
+          <button class="popup__submit-button popup__submit-button_cards" type="submit">Создать</button>
+        </form> 
+      </main>
+      <!-- блок popup-image -->
+      <main class="popup popup_image">
+        <div class="popup__container-image"> 
+          <button class="popup__close-button popup__close-button-image opacity" type="reset" aria-label="Закрыть окно"></button>
+          <img class="popup__preview" alt="">
+          <h2 class="popup__title-image"></h2>
+        </div>
+      </main>
+  </div>
+  <script src="./js/script.js"></script>
 </body>
 </html>

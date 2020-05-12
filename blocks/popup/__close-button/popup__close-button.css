@@ -8,7 +8,7 @@
   background-image: url(../../../images/popup/Close_Icon.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: black;
+  background-color: transparent;
   border: none;
   background-size: cover;
 }
