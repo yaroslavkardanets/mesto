@@ -12,8 +12,8 @@
   width: 282px;
   display: grid;
   grid-template-areas: 
-      'image image'
-      'title like';
+    'image image'
+    'title like';
   grid-template-columns: 222px 60px;    
   grid-template-rows: 282px 80px;
 }
