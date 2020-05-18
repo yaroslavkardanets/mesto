@@ -48,8 +48,8 @@
         <form class="popup__container" name="form" method="post" action="#">
           <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто">
-          <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана">
+          <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+          <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана" required minlength="2" maxlength="200">
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form> 
       </section>
@@ -58,8 +58,8 @@
         <form class="popup__container popup__container_cards" name="form" method="post" action="#">
           <button class="popup__close-button popup__close-button_cards opacity" type="reset" aria-label="Закрыть окно"></button>
           <h2 class="popup__title popup__title_cards">Новое место</h2>
-          <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название">
-          <input class="popup__input popup__input_cards_image" type="text" name="imageInput" placeholder="Ссылка на картинку">
+          <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название" required minlength="1" maxlength="30">
+          <input class="popup__input popup__input_cards_image" type="url" name="imageInput" placeholder="Ссылка на картинку" required>
           <button class="popup__submit-button popup__submit-button_cards" type="submit">Создать</button>
         </form> 
       </section>
