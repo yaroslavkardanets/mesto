@@ -24,9 +24,6 @@
           <div class="profile__edit-wrapper">
             <h2 class="profile__name">Жак-Ив Кусто</h2>
             <button class="profile__edit-button opacity" type="button" aria-label="Редактировать"></button>
-            <!-- Пока оставил кнопку на прежнем месте, но так, чтоб она не "приклеивалась" к кнопке "Добавить".
-            Во-первых не хочется отходить от изначального макета. Во-вторых думаю, что надо сохранить привязку 
-            к блоку с именем к которому она относится. Если все же ошибаюсь, готов найти иное решение. -->
           </div>
           <p class="profile__occupation">Исследователь океана</p>
         </div>
@@ -45,11 +42,18 @@
       </section>
       <!-- блок popup-title --> 
       <section class="popup">
-        <form class="popup__container" name="form" method="post" action="#">
+        <form class="popup__container" name="form" method="post" action="#" novalidate>
           <button class="popup__close-button opacity" type="reset" aria-label="Закрыть окно"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_name" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
-          <input class="popup__input popup__input_occupation" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана" required minlength="2" maxlength="200">
+          <fieldset class="popup__fieldset">
+            
+              <input class="popup__input popup__input_name" id="name-input" type="text" name="nameInput" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40" pattern="[A-Za-zА-Яа-яЁё -]*">
+              <span class="popup__input-error" id="name-input-error">Вы пропустили это поле.</span>
+            
+              <input class="popup__input popup__input_occupation" id="occupation-input" type="text" name="profileOccupation" placeholder="Профессия" value="Исследователь океана" required minlength="2" maxlength="200">
+              <span class="popup__input-error" id="occupation-input-error">Вы пропустили это поле.</span>
+          
+          </fieldset>  
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form> 
       </section>
@@ -58,8 +62,13 @@
         <form class="popup__container popup__container_cards" name="form" method="post" action="#">
           <button class="popup__close-button popup__close-button_cards opacity" type="reset" aria-label="Закрыть окно"></button>
           <h2 class="popup__title popup__title_cards">Новое место</h2>
-          <input class="popup__input popup__input_cards_place" type="text" name="placeInput" placeholder="Название" required minlength="1" maxlength="30">
-          <input class="popup__input popup__input_cards_image" type="url" name="imageInput" placeholder="Ссылка на картинку" required>
+          
+          <input class="popup__input popup__input_cards_place" id="place-input" type="text" name="placeInput" placeholder="Название" required minlength="1" maxlength="30">
+          <span class="popup__input-error" id="place-input-error">Вы пропустили это поле.</span>
+          
+          <input class="popup__input popup__input_cards_image" id="image-input" type="url" name="imageInput" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error" id="image-input-error">Введите адрес сайта.</span>
+          
           <button class="popup__submit-button popup__submit-button_cards" type="submit">Создать</button>
         </form> 
       </section>
@@ -78,5 +87,6 @@
     </footer>
   </div>
   <script src="./js/script.js"></script>
+  <script src="./js/validation.js"></script>
 </body>
 </html>

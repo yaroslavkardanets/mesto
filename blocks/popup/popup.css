@@ -8,7 +8,13 @@
 @import url(./__container-image/popup__container-image.css);
 @import url(./__preview/popup__preview.css);
 @import url(./__title-image/popup__title-image.css);
-@import url(./__close-button-image/popup__close-button-image.css);
+@import url(./__fieldset/popup__fieldset.css);
+
+/* Валидация */
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
+@import url(./__input/_type_error/popup__input_type_error.css);
+@import url(./__submit-button/_inactive/popup__submit-button_inactive.css);
 
 .popup {
   width: 100%;
