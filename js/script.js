@@ -1,3 +1,4 @@
+// *** Переменные *** //
 // переменные profile
 const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
@@ -6,6 +7,7 @@ const profileOccupation = document.querySelector('.profile__occupation');
 
 // переменные popup профиля
 const popup = document.querySelector('.popup');
+const popupMain = document.querySelector('.popup_main-info');
 const formElement = document.querySelector('.popup__container');
 const closeButton = document.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_name');
@@ -27,11 +29,22 @@ const closeImage = document.querySelector('.popup__close-button-image');
 const previewImage = document.querySelector('.popup__preview');
 const titleImage = document.querySelector('.popup__title-image');
 
-// Открываем титульный popup профиля и присваиваиваем значения полям
+
+// *** Открываем/закрываем всплывающие окна *** //
+// Закрываем popup кнопкой Esc
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const close = document.querySelector('.popup-opened');
+    close.classList.remove('popup-opened');
+  };
+}
+
+// Открываем popup и присваиваиваем значения полям
 function openPopup () {
   popup.classList.add('popup-opened');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileOccupation.textContent;
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 // Закрываем popup
@@ -39,6 +52,14 @@ function closePopup () {
   popup.classList.remove('popup-opened');
   popupCards.classList.remove('popup-opened');
   popupImage.classList.remove('popup-opened');
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
+// Закрываем popup кликом по оверлею
+function closePopupClick (evt) {
+  if (evt.target.classList.contains('popup')) {
+    evt.target.classList.remove('popup-opened');
+  };
 }
 
 // Обработка титульного popup для отправки на сервер
@@ -49,6 +70,8 @@ function formSubmitHandler (evt) {
   closePopup();
 }
 
+
+// *** Работаем с карточками *** //
 // массив карточек
 const initialCards = [
   {
@@ -129,12 +152,25 @@ function cardSubmitHandler (evt) {
   closePopup();
 }
 
-// слушатели
+
+// *** Слушатели *** //
+// Закрытие кликом по оверлею
+popupMain.addEventListener('click', closePopupClick);
+popupCards.addEventListener('click', closePopupClick);
+popupImage.addEventListener('click', closePopupClick);
+
+// Кнопка подтверждения карточек
 cardsElement.addEventListener('submit', cardSubmitHandler);
+
+// Кнопки открытия форм
 editButton.addEventListener('click', openPopup);
 addCardButton.addEventListener('click', openPopupCards);
+
+// Закрытие кликом по крестику
 closeButton.addEventListener('click', closePopup);
-closeButtonCards.addEventListener('click', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
 closeImage.addEventListener('click', closePopup);
+closeButtonCards.addEventListener('click', closePopup);
+
+// Кнопка подтверждения имени/профессии
+formElement.addEventListener('submit', formSubmitHandler);
 
