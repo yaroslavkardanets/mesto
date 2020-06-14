@@ -38,8 +38,8 @@ function setEventListener (formElement) {
 }
 
 // Проверяем всю форму
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
+function enableValidation(objects) {
+  const formList = Array.from(document.querySelectorAll(objects.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -47,7 +47,6 @@ function enableValidation() {
     setEventListener(formElement);
   });
 }
-enableValidation();
 
 // Проверям на ошибки заполненные поля для кнопки отправки формы
 function hasInvalidInput (inputList) {
@@ -60,17 +59,21 @@ function hasInvalidInput (inputList) {
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__submit-button_inactive');
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
     buttonElement.classList.remove('popup__submit-button_inactive');
+    buttonElement.removeAttribute('disabled');
   }
 }
 
 // Проверяем элементы формы
-enableValidation({
+const formObjects = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_inactive',
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__input-error_active'
-});
+}
+
+enableValidation(formObjects);
