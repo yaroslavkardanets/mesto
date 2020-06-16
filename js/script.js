@@ -6,11 +6,9 @@ const profileTitle = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
 // переменные popup профиля
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const formElement = document.querySelector('.popup__container');
 const closeButtonProfile = document.querySelector('.popup__close-button_profile');
-const closeButton = document.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_occupation');
 
@@ -32,21 +30,12 @@ const titleImage = document.querySelector('.popup__title-image');
 
 
 // *** Открываем/закрываем всплывающие окна *** //
-
-
-              // ********************* //
-// *** // Разбираем открывание-закрывание // *** //
-              // ********************* //
-
-// function name(params) {
-  
-// }
-
 // Общая функция закрыть/открыть popup
 function openClosePopup(element) {
   element.classList.toggle('popup-opened');
 }
 
+// *** Открываем всплывающие окна *** //
 // Открываем popup профиля, передаем текущие значения
 function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
@@ -60,7 +49,6 @@ function openPopupProfile() {
 
 // Открываем попап создания карточки
 function openPopupCards() {
-  // popupCards.classList.add('popup-opened');
   placeInput.value = '';
   imageInput.value = '';
   closeButtonCards.addEventListener('click', closePopupButton);
@@ -79,6 +67,7 @@ function previewImages(evt) {
     openClosePopup(popupImage);
 }
 
+
 // *** закрываем всплывающие окна (3 способа) *** //
 // Кнопка закрыть popup (крестик)
 function closePopupButton(evt) {
@@ -86,9 +75,6 @@ function closePopupButton(evt) {
   closeButtonProfile.removeEventListener('click', closePopupButton);
   closeButtonCards.removeEventListener('click', closePopupButton);
   closeImage.removeEventListener('click', closePopupButton);
-    // if (evt.target.classList.contains('popup')) {
-    //   evt.target.classList.remove('popup-opened');
-    // }
 }
 
 // Закрываем popup кликом по оверлею
@@ -108,41 +94,6 @@ function closePopupEsc(evt) {
     close.classList.remove('popup-opened');
   }
   document.removeEventListener('keydown', closePopupEsc);
-}
-
-              // ********************* //
-// *** // Закончили разбор открывания-закрывания // *** //
-              // ********************* //
-
-
-
- /* // *** Текущая версия открыть-закрыть *** //
-// Открываем popup и присваиваиваем значения полям
-function openPopup () {
-  popup.classList.add('popup-opened');
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileOccupation.textContent;
-  document.addEventListener('keydown', closePopupEsc);
-}
-// Закрываем popup
-function closePopup () {
-  popup.classList.remove('popup-opened');
-  popupCards.classList.remove('popup-opened');
-  popupImage.classList.remove('popup-opened');
-  document.removeEventListener('keydown', closePopupEsc);
-}
-*/
-
-
-
-
-
-// Обработка титульного popup для отправки на сервер
-function formSubmitHandler (evt) {
-  evt.preventDefault(); 
-  profileTitle.textContent = nameInput.value;
-  profileOccupation.textContent = jobInput.value;
-  openClosePopup(popupProfile);
 }
 
 
@@ -175,7 +126,7 @@ const initialCards = [
   }
 ];
 
-// *** Исправленный блок работы с карточкой *** //
+// *** Блок работы с карточкой *** //
 
 
 // Собираем карточку
@@ -213,6 +164,16 @@ function makeCard (card) {
 }
 makeCard(initialCards);
 
+
+// *** Создаем/сохраняем данные попапов *** //
+// Обработка титульного popup для отправки на сервер
+function formSubmitHandler (evt) {
+  evt.preventDefault(); 
+  profileTitle.textContent = nameInput.value;
+  profileOccupation.textContent = jobInput.value;
+  openClosePopup(popupProfile);
+}
+
 // Добавляем карточки
 function cardSubmitHandler (evt) {
   evt.preventDefault();
@@ -224,31 +185,11 @@ function cardSubmitHandler (evt) {
 
 
 // *** Слушатели *** //
-// Закрытие кликом по оверлею
-// popupProfile.addEventListener('click', closePopupClick);
-// popupCards.addEventListener('click', closePopupClick);
-// popupImage.addEventListener('click', closePopupClick);
-
 // Кнопка подтверждения карточек
 cardsElement.addEventListener('submit', cardSubmitHandler);
-
 // Кнопки открытия форм
-// profileEditButton.addEventListener('click', openPopup);         // *** Текущая версия открыть-закрыть *** //
-// addCardButton.addEventListener('click', openPopupCards);    // *** Текущая версия открыть-закрыть *** //
 profileEditButton.addEventListener('click', openPopupProfile);
 addCardButton.addEventListener('click', openPopupCards);
-
-// Закрытие кликом по крестику
-// closeButton.forEach((element) => {
-//   element.addEventListener('click', closePopupButton)
-// })
-// closeButtonProfile.addEventListener('click', closePopupButton);
-// closeImage.addEventListener('click', closePopupButton);
-// closeButtonCards.addEventListener('click', closePopupButton);
-// closeButton.addEventListener('click', closePopup);       // *** Текущая версия открыть-закрыть *** //
-// closeImage.addEventListener('click', closePopup);        // *** Текущая версия открыть-закрыть *** //
-// closeButtonCards.addEventListener('click', closePopup);  // *** Текущая версия открыть-закрыть *** //
-
 // Кнопка подтверждения имени/профессии
 formElement.addEventListener('submit', formSubmitHandler);
 
