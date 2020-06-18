@@ -48,7 +48,6 @@ function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileOccupation.textContent;
   openClosePopup(popupProfile);
-  // addListenersForOpenPopup();
   addListenersForOpenPopup(closeButtonProfile, popupProfile);
 }
 
