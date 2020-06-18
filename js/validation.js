@@ -2,16 +2,16 @@
 // Показываем сообщение ошибки ввода
 const showInputError = (formElement, inputElement, errorMessage) => { // errorMessage - стандартное сообщение об ошибке
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(formObjects.inputErrorClass);
   errorElement.textContent = errorMessage; // errorMessage - стандартное сообщение об ошибке
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(formObjects.errorClass);
 }
 
 // Прячем сообщение ошибки ввода
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(formObjects.inputErrorClass);
+  errorElement.classList.remove(formObjects.errorClass);
   errorElement.textContent = ''; // стандартное сообщение об ошибке
 }
 
@@ -26,25 +26,25 @@ const isValid = (formElement, inputElement) => {
 
 // Проверяем поля ввода
 function setEventListener (formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit-button');
-  toggleButtonState(inputList, buttonElement);
+  const inputList = Array.from(formElement.querySelectorAll(formObjects.inputSelector));
+  const buttonElement = formElement.querySelector(formObjects.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, formObjects);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, formObjects);
     });
   });
 }
 
 // Проверяем всю форму
-function enableValidation(objects) {
-  const formList = Array.from(document.querySelectorAll(objects.formSelector));
+function enableValidation(formObjects) {
+  const formList = Array.from(document.querySelectorAll(formObjects.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     })
-    setEventListener(formElement);
+    setEventListener(formElement, formObjects);
   });
 }
 
@@ -56,15 +56,25 @@ function hasInvalidInput (inputList) {
 }
 
 // Активация / деактивация кнопки отправки формы
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, formObjects) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submit-button_inactive');
+    buttonElement.classList.add(formObjects.inactiveButtonClass);
     buttonElement.setAttribute('disabled', 'disabled');
   } else {
-    buttonElement.classList.remove('popup__submit-button_inactive');
+    buttonElement.classList.remove(formObjects.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
   }
 }
+
+// // Проверяем элементы формы
+// enableValidation({
+//   formSelector: '.popup__container',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__submit-button',
+//   inactiveButtonClass: 'popup__submit-button_inactive',
+//   inputErrorClass: 'popup__input-error',
+//   errorClass: 'popup__input-error_active'
+// });
 
 // Проверяем элементы формы
 const formObjects = {
@@ -72,8 +82,7 @@ const formObjects = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_inactive',
-  inputErrorClass: 'popup__input-error',
+  inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 }
-
 enableValidation(formObjects);
