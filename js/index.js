@@ -1,3 +1,5 @@
+import { initialCards } from "./Card.js";
+
 // *** Переменные *** //
 // переменные profile
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -73,11 +75,11 @@ function removeListenersAndClosePopup() {
 
   closeButtonProfile.removeEventListener('click', closePopupButton);
   closeButtonCards.removeEventListener('click', closePopupButton);
-  closeImage.removeEventListener('click', closePopupButton);  
+  // closeImage.removeEventListener('click', closePopupButton);  
 
   popupProfile.removeEventListener('click', closePopupClick);
   popupCards.removeEventListener('click', closePopupClick);
-  popupImage.removeEventListener('click', closePopupClick);  
+  // popupImage.removeEventListener('click', closePopupClick);  
 }
 
 // *** закрываем всплывающие окна (3 способа) *** //
@@ -104,91 +106,138 @@ function closePopupEsc(evt) {
   removeListenersAndClosePopup();
 }
 
-
-// *** Работаем с карточками *** //
-// массив карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+class Card {
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
   }
-];
 
+  _getTemplate() {
+    const cardElement = document
+    .querySelector(this._cardSelector)
+    .content
+    .querySelector('.element')
+    .cloneNode(true);
 
-// *** Блок работы с карточкой *** //
-// Собираем карточку
-function cardItem (name, link) {
-  const cardElement = document.querySelector('#card-element').content;
-  const element = cardElement.cloneNode(true);
-  const elementTitle = element.querySelector('.element__title');
-  const elementImage = element.querySelector('.element__image');
-  const elementLike = element.querySelector('.element__like'); 
-  const elementTrash = element.querySelector('.element__trash');
-  
-  elementTitle.textContent = name;
-  elementImage.src = link; 
+    return cardElement;
+  }
 
-  elementLike.addEventListener('click', cardLike);
-  elementTrash.addEventListener('click', deleteCard);
-  elementImage.addEventListener('click', previewImages);
-  return element;
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__image').src = this._link;
+    this._setEventListeners();
+
+    return this._element;
+  }
+
+  // Обработчик лайка
+  _handleLike() {
+    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+  }
+
+  // Обработчик удаления карточки и слушателей 
+  _handleTrash() {
+    this._element.remove();
+  }
+
+  // *** Добавляем слушатели *** //
+  _setEventListeners() {
+    // слушатель лайка
+    this._element.querySelector('.element__like').addEventListener('click', () => {
+      this._handleLike();
+    });
+    // слушатель удаления
+    this._element.querySelector('.element__trash').addEventListener('click', () => {
+      this._handleTrash();
+    });
+    // слушатель просмотра фотографии
+    this._element.querySelector('.element__image').addEventListener('click', () => {
+      showImagePopup(this._link, this._name);
+    });
+  }
 }
 
-// активируем like
-function cardLike (evt) {
-  evt.target.classList.toggle('element__like_active');
-}
-// Удаляем карточку
-function deleteCard (evt) {
-  evt.target.closest('.element').remove();
+// Открываем попап просмотра фотографии
+function showImagePopup(link, name) {
+  titleImage.textContent = name;
+  previewImage.src = link;
+  openClosePopup(popupImage);
 }
 
-// Создаем массив карточек
-function makeCard (card) {
-  card.forEach(function (item) {
-    elements.append(cardItem (item.name, item.link));
-  })
-}
-makeCard(initialCards);
-
-
-// *** Создаем/сохраняем данные попапов *** //
-// Обработка титульного всплывающего окна для отправки на сервер
-function formSubmitHandler (evt) {
-  evt.preventDefault(); 
-  profileTitle.textContent = nameInput.value;
-  profileOccupation.textContent = jobInput.value;
-  openClosePopup(popupProfile);
+// Создаем и добавляем в разметку новую карточку
+function addCard(item) {
+  const card = new Card(item, '#card-element');
+  const cardElement = card.generateCard();
+  elements.append(cardElement);
 }
 
-// Добавляем карточки
-function cardSubmitHandler (evt) {
-  evt.preventDefault();
-  elements.prepend(cardItem (placeInput.value, imageInput.value));
-  placeInput.value = '';
-  imageInput.value = '';
-  openClosePopup(popupCards);
+// Добавляем в разметку 6 готовых карточек
+function getInitialCards() {
+  initialCards.forEach((item) => {
+    addCard(item)
+  });
 }
+
+getInitialCards();
+
+      // *** Блок работы с карточкой *** //
+      // Собираем карточку
+      // function cardItem (name, link) {
+      //   const cardElement = document.querySelector('#card-element').content;
+      //   const element = cardElement.cloneNode(true);
+      //   const elementTitle = element.querySelector('.element__title');
+      //   const elementImage = element.querySelector('.element__image');
+      //   const elementLike = element.querySelector('.element__like'); 
+      //   const elementTrash = element.querySelector('.element__trash');
+        
+      //   elementTitle.textContent = name;
+      //   elementImage.src = link; 
+
+      //   elementLike.addEventListener('click', cardLike);
+      //   elementTrash.addEventListener('click', deleteCard);
+      //   elementImage.addEventListener('click', previewImages);
+      //   return element;
+      // }
+
+      // активируем like
+      // function cardLike (evt) {
+      //   evt.target.classList.toggle('element__like_active');
+      // }
+      // // Удаляем карточку
+      // function deleteCard (evt) {
+      //   evt.target.closest('.element').remove();
+      // }
+
+      // Создаем массив карточек
+      // function makeCard (card) {
+      //   card.forEach(function (item) {
+      //     elements.append(cardItem (item.name, item.link));
+      //   })
+      // }
+      // makeCard(initialCards);
+
+
+      // *** Создаем/сохраняем данные попапов *** //
+      // Обработка титульного всплывающего окна для отправки на сервер
+      function formSubmitHandler (evt) {
+        evt.preventDefault(); 
+        profileTitle.textContent = nameInput.value;
+        profileOccupation.textContent = jobInput.value;
+        openClosePopup(popupProfile);
+      }
+
+      // Добавляем карточки
+      function cardSubmitHandler (evt) {
+        evt.preventDefault();
+        const newCard = { name: placeInput.value, link: imageInput.value };
+        addCard(newCard);
+        // elements.prepend(cardItem (placeInput.value, imageInput.value));
+        // placeInput.value = '';
+        // imageInput.value = '';
+        openClosePopup(popupCards);
+      }
 
 
 // *** Слушатели *** //
