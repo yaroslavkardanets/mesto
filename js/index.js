@@ -1,4 +1,5 @@
-import { initialCards } from "./Card.js";
+import { initialCards } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 // *** Переменные *** //
 // переменные profile
@@ -24,11 +25,11 @@ const imageInput = document.querySelector('.popup__input_cards_image');
 // переменные элементы карточек
 const elements = document.querySelector('.elements');
 
-// переменные popup просмотра фотографии
-const popupImage = document.querySelector('.popup_image');
-const closeImage = document.querySelector('.popup__close-button-image');
-const previewImage = document.querySelector('.popup__preview');
-const titleImage = document.querySelector('.popup__title-image');
+// // переменные popup просмотра фотографии
+// const popupImage = document.querySelector('.popup_image');
+// const closeImage = document.querySelector('.popup__close-button-image');
+// const previewImage = document.querySelector('.popup__preview');
+// const titleImage = document.querySelector('.popup__title-image');
 
 
 // *** Открываем/закрываем всплывающие окна *** //
@@ -61,13 +62,13 @@ function openPopupCards() {
   addListenersForOpenPopup(closeButtonCards, popupCards);
 }
 
-// Открываем всплывающее окно просмотра фотографии
-function previewImages(evt) {
-  previewImage.setAttribute('src', evt.target.src);
-  titleImage.textContent = name;
-  openClosePopup(popupImage);
-  addListenersForOpenPopup(closeImage, popupImage);
-}
+// // Открываем всплывающее окно просмотра фотографии
+// function previewImages(evt) {
+//   previewImage.setAttribute('src', evt.target.src);
+//   titleImage.textContent = name;
+//   openClosePopup(popupImage);
+//   addListenersForOpenPopup(closeImage, popupImage);
+// }
 
 // Удаляем слушатели для всплывающих окон
 function removeListenersAndClosePopup() {
@@ -75,11 +76,11 @@ function removeListenersAndClosePopup() {
 
   closeButtonProfile.removeEventListener('click', closePopupButton);
   closeButtonCards.removeEventListener('click', closePopupButton);
-  // closeImage.removeEventListener('click', closePopupButton);  
+  closeImage.removeEventListener('click', closePopupButton);  
 
   popupProfile.removeEventListener('click', closePopupClick);
   popupCards.removeEventListener('click', closePopupClick);
-  // popupImage.removeEventListener('click', closePopupClick);  
+  popupImage.removeEventListener('click', closePopupClick);  
 }
 
 // *** закрываем всплывающие окна (3 способа) *** //
@@ -137,11 +138,6 @@ class Card {
     this._element.querySelector('.element__like').classList.toggle('element__like_active');
   }
 
-  // Обработчик удаления карточки и слушателей 
-  _handleTrash() {
-    this._element.remove();
-  }
-
   // *** Добавляем слушатели *** //
   _setEventListeners() {
     // слушатель лайка
@@ -154,17 +150,40 @@ class Card {
     });
     // слушатель просмотра фотографии
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      showImagePopup(this._link, this._name);
+      previewImages(this._link, this._name);
     });
+  }
+  // Обработчик удаления карточки и слушателей 
+  _handleTrash() {
+    this._element.querySelector('.element__like').removeEventListener('click', () => {
+      this._handleLike();
+    });
+    // слушатель удаления
+    this._element.querySelector('.element__trash').removeEventListener('click', () => {
+      this._handleTrash();
+    });
+    // слушатель просмотра фотографии
+    this._element.querySelector('.element__image').removeEventListener('click', () => {
+      previewImages();
+    });
+    this._element.remove();
   }
 }
 
+// переменные popup просмотра фотографии
+const popupImage = document.querySelector('.popup_image');
+const closeImage = document.querySelector('.popup__close-button-image');
+const previewImage = document.querySelector('.popup__preview');
+const titleImage = document.querySelector('.popup__title-image');
+
 // Открываем попап просмотра фотографии
-function showImagePopup(link, name) {
-  titleImage.textContent = name;
+function previewImages(link, name) {
   previewImage.src = link;
+  previewImage.alt = name;
+  titleImage.textContent = name;
   openClosePopup(popupImage);
-}
+  addListenersForOpenPopup(closeImage, popupImage);
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
 // Создаем и добавляем в разметку новую карточку
 function addCard(item) {
@@ -179,8 +198,38 @@ function getInitialCards() {
     addCard(item)
   });
 }
-
 getInitialCards();
+
+// Добавляем карточки
+function cardSubmitHandler (evt) {
+  evt.preventDefault();
+  const newCard = { name: placeInput.value, link: imageInput.value };
+  addCard(newCard);
+  openClosePopup(popupCards);
+}
+
+// !!!!!!!!!
+const formObjects = {
+  // formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}
+// enableValidation(formObjects);
+
+// !!!!!!!
+// Функция валидации форм
+function addValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__container'));
+  formList.forEach((form) => {
+    const formValidator = new FormValidator(formObjects, form);
+    formValidator.enableValidation();
+  });
+}
+addValidation();
+// !!!!!!!
 
       // *** Блок работы с карточкой *** //
       // Собираем карточку
@@ -219,25 +268,16 @@ getInitialCards();
       // makeCard(initialCards);
 
 
-      // *** Создаем/сохраняем данные попапов *** //
-      // Обработка титульного всплывающего окна для отправки на сервер
-      function formSubmitHandler (evt) {
-        evt.preventDefault(); 
-        profileTitle.textContent = nameInput.value;
-        profileOccupation.textContent = jobInput.value;
-        openClosePopup(popupProfile);
-      }
+// *** Создаем/сохраняем данные попапов *** //
+// Обработка титульного всплывающего окна для отправки на сервер
+function formSubmitHandler (evt) {
+  evt.preventDefault(); 
+  profileTitle.textContent = nameInput.value;
+  profileOccupation.textContent = jobInput.value;
+  openClosePopup(popupProfile);
+}
 
-      // Добавляем карточки
-      function cardSubmitHandler (evt) {
-        evt.preventDefault();
-        const newCard = { name: placeInput.value, link: imageInput.value };
-        addCard(newCard);
-        // elements.prepend(cardItem (placeInput.value, imageInput.value));
-        // placeInput.value = '';
-        // imageInput.value = '';
-        openClosePopup(popupCards);
-      }
+      
 
 
 // *** Слушатели *** //
