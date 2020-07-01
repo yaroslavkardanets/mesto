@@ -13,11 +13,11 @@ export class FormValidator {
     this._formSelector.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
-      this._setEventListener();
+      this._setEventListeners();
   }
 
   // Проверяем поля ввода
-  _setEventListener () {
+  _setEventListeners () {
     const inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
     const buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
     this._toggleButtonState(inputList, buttonElement);

@@ -1,12 +1,9 @@
-import { 
-  openClosePopup, 
-  popupImage, 
-  addListenersForOpenPopup,
-  closeImage 
-} from './index.js';
+import { openPopup, addListenersForOpenPopup } from '../pages/index.js';
 
 const previewImage = document.querySelector('.popup__preview');
 const titleImage = document.querySelector('.popup__title-image');
+const popupImage = document.querySelector('.popup_image');
+const closeImage = document.querySelector('.popup__close-button-image');
 
 // *** Работаем с карточками *** //
 // массив карточек
@@ -80,11 +77,18 @@ export class Card {
     });
     // слушатель просмотра фотографии
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      previewImages(this._link, this._name);
+      handlePreviewPicture(this._link, this._name);
     });
   }
-  // Обработчик удаления карточки и слушателей 
+  // Обработчик удаления карточки 
   _handleTrash() {
+    this._element.remove();
+    this._element = null;
+    _removeEventListeners();
+  }
+
+  // Обработчик удаления слушателей 
+  _removeEventListeners() {
     this._element.querySelector('.element__like').removeEventListener('click', () => {
       this._handleLike();
     });
@@ -94,17 +98,16 @@ export class Card {
     });
     // слушатель просмотра фотографии
     this._element.querySelector('.element__image').removeEventListener('click', () => {
-      previewImages();
+      handlePreviewPicture();
     });
-    this._element.remove();
   }
 }
 
 // Открываем попап просмотра фотографии
-function previewImages(link, name) {
+function handlePreviewPicture(link, name) {
   previewImage.src = link;
   previewImage.alt = name;
   titleImage.textContent = name;
-  openClosePopup(popupImage);
+  openPopup(popupImage);
   addListenersForOpenPopup(closeImage, popupImage);
 } 

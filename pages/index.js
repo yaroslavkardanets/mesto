@@ -1,5 +1,5 @@
-import { initialCards, Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { initialCards, Card } from '../js/Card.js';
+import { FormValidator } from '../js/FormValidator.js';
 
 
 
@@ -28,15 +28,23 @@ const imageInput = document.querySelector('.popup__input_cards_image');
 const elements = document.querySelector('.elements');
 
 // переменные popup просмотра фотографии
-export const popupImage = document.querySelector('.popup_image');
-export const closeImage = document.querySelector('.popup__close-button-image');
+const popupImage = document.querySelector('.popup_image');
+const closeImage = document.querySelector('.popup__close-button-image');
 
 
+// Общая функция закрыть/открыть всплывающее окно
+// export function openClosePopup(element) {
+//   element.classList.toggle('popup-opened');
+// }
 
 // *** Открываем/закрываем всплывающие окна *** //
-// Общая функция закрыть/открыть всплывающее окно
-export function openClosePopup(element) {
-  element.classList.toggle('popup-opened');
+// Открываем popup
+export function openPopup(element) {
+  element.classList.add('popup-opened'); 
+}
+// Закрываем popup
+function closePopup(element) {
+  element.classList.remove('popup-opened'); 
 }
 
 // Добавляем слушатели для всплывающих окон
@@ -53,7 +61,7 @@ export function addListenersForOpenPopup(button, overlay) {
 function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileOccupation.textContent;
-  openClosePopup(popupProfile);
+  openPopup(popupProfile);
   addListenersForOpenPopup(closeButtonProfile, popupProfile);
 }
 
@@ -61,7 +69,7 @@ function openPopupProfile() {
 function openPopupCards() {
   placeInput.value = '';
   imageInput.value = '';
-  openClosePopup(popupCards);
+  openPopup(popupCards);
   addListenersForOpenPopup(closeButtonCards, popupCards);
 }
 
@@ -83,7 +91,7 @@ function removeListenersAndClosePopup() {
 // *** закрываем всплывающие окна (3 способа) *** //
 // Кнопка закрыть всплывающее окно (крестик)
 function closePopupButton(evt) {
-  openClosePopup(evt.target.closest('.popup'));
+  closePopup(evt.target.closest('.popup'));
   removeListenersAndClosePopup();
 }
 
@@ -91,8 +99,8 @@ function closePopupButton(evt) {
 function closePopupClick (evt) {
   if (evt.target.classList.contains('popup')) {
     evt.target.classList.remove('popup-opened');
+    removeListenersAndClosePopup();
   }
-  removeListenersAndClosePopup();
 }
 
 // Закрываем всплывающее окно кнопкой Esc
@@ -100,8 +108,8 @@ function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
     const close = document.querySelector('.popup-opened');
     close.classList.remove('popup-opened');
+    removeListenersAndClosePopup();
   }
-  removeListenersAndClosePopup();
 }
 
 
@@ -110,13 +118,13 @@ function closePopupEsc(evt) {
 // Добавляем в разметку 6 готовых карточек
 function addInitialCards() {
   initialCards.forEach((item) => {
-    addCard(item)
+    renderCard(item)
   });
 }
 addInitialCards();
 
 // Создаем и добавляем в разметку новую карточку
-function addCard(item) {
+function renderCard(item) {
   const card = new Card(item, '#card-element');
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
@@ -126,8 +134,8 @@ function addCard(item) {
 function cardSubmitHandler (evt) {
   evt.preventDefault();
   const newCard = { name: placeInput.value, link: imageInput.value };
-  addCard(newCard);
-  openClosePopup(popupCards);
+  renderCard(newCard);
+  closePopup(popupCards);
 }
 
 
@@ -160,7 +168,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   profileTitle.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  openClosePopup(popupProfile);
+  closePopup(popupProfile);
 }
 
 
