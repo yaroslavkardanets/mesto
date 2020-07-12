@@ -31,6 +31,62 @@ const elements = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup_image');
 const closeImage = document.querySelector('.popup__close-button-image');
 
+class Section {
+  constructor({ items, renderer }, containerSelector) {
+    this._rendreredItems = items;
+    this._renderer = renderer;
+    this._container = document.querySelector(containerSelector);
+  }
+
+  renderItems() {
+    this._rendreredItems.forEach(item => this._renderer(item));
+  }
+  
+  addItem(element) {
+    this._container.append(element);
+  }
+}
+
+class Popup {
+  constructor(popupSelector) {
+    this._popup = document.querySelector(popupSelector);
+  }
+
+  open() {
+    this._popup.classList.add('popup-opened');
+    setEventListeners();
+    addListenersForOpenPopup
+  }
+
+  close() {
+    this._popup.classList.remove('popup-opened');
+    // this._popup.querySelector('.popup__close-button').removeEventListener('click', ) !!!!!
+  }
+
+  // Закрываем всплывающее окно кнопкой Esc
+  _handleEscClose = (evt) => {
+    if (evt.key === 'Escape') {
+      document.querySelector('.popup-opened').classList.remove('popup-opened');
+      document.removeEventListener('keydown', this._handleEscClose);
+      removeListenersAndClosePopup();
+    }
+  }
+
+  this._handleOverlayClose = (evt)
+
+  setEventListeners() {
+    this._popup.querySelector('.popup__close-button').addEventListener('click', );
+  }
+}
+
+// Закрываем всплывающее окно кнопкой Esc
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const close = document.querySelector('.popup-opened');
+    close.classList.remove('popup-opened');
+    removeListenersAndClosePopup();
+  }
+}
 
 // Общая функция закрыть/открыть всплывающее окно
 // export function openClosePopup(element) {
@@ -49,7 +105,7 @@ function closePopup(element) {
 
 // Добавляем слушатели для всплывающих окон
 export function addListenersForOpenPopup(button, overlay) {
-  document.addEventListener('keydown', closePopupEsc);
+  // document.addEventListener('keydown', closePopupEsc);
   button.addEventListener('click', closePopupButton);
   overlay.addEventListener('click', closePopupClick);
 }
@@ -103,14 +159,7 @@ function closePopupClick (evt) {
   }
 }
 
-// Закрываем всплывающее окно кнопкой Esc
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const close = document.querySelector('.popup-opened');
-    close.classList.remove('popup-opened');
-    removeListenersAndClosePopup();
-  }
-}
+
 
 
 
