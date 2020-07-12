@@ -1,5 +1,5 @@
-import { initialCards, Card } from '../js/Card.js';
-import { FormValidator } from '../js/FormValidator.js';
+import { initialCards, Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 
 
@@ -47,37 +47,61 @@ class Section {
   }
 }
 
+// ************** class Popup ************** start //
 class Popup {
   constructor(popupSelector) {
-    this._popup = document.querySelector(popupSelector);
+    this._popupSelector = popupSelector;
   }
 
   open() {
-    this._popup.classList.add('popup-opened');
+    this._popupSelector.classList.add('popup-opened');
     setEventListeners();
-    addListenersForOpenPopup
   }
 
   close() {
-    this._popup.classList.remove('popup-opened');
-    // this._popup.querySelector('.popup__close-button').removeEventListener('click', ) !!!!!
+    this._popupSelector.classList.remove('popup-opened');
+    removeEventListeners();
   }
 
   // Закрываем всплывающее окно кнопкой Esc
   _handleEscClose = (evt) => {
     if (evt.key === 'Escape') {
-      document.querySelector('.popup-opened').classList.remove('popup-opened');
-      document.removeEventListener('keydown', this._handleEscClose);
-      removeListenersAndClosePopup();
+      this.close();
+    }
+  }
+  
+  _handlePopupButtonClose = () => {
+    // closePopup(evt.target.closest('.popup'));
+    this.close();
+  }
+
+  _handleOverlayClose = (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      this.close();
     }
   }
 
-  this._handleOverlayClose = (evt)
-
+  // Добавляем слушатели для всплывающих окон
   setEventListeners() {
-    this._popup.querySelector('.popup__close-button').addEventListener('click', );
+    document.addEventListener('keydown', this._handleEscClose);
+    this._popupSelector
+      .querySelector('.popup__close-button')
+      .addEventListener('click', this._handlePopupButtonClose);
+    this._popupSelector.addEventListener('click', this._handleOverlayClose);
+  }
+
+  // Удаляем слушатели для всплывающих окон
+  removeEventListeners() {
+    document.removeEventListener('keydown', this._handleEscClose);
+    this._popupSelector
+      .querySelector('.popup__close-button')
+      .removeEventListener('click', this._handlePopupButtonClose);
+    this._popupSelector.removeEventListener('click', this._handleOverlayClose);
   }
 }
+// ************** class Popup ************** end //
+
+
 
 // Закрываем всплывающее окно кнопкой Esc
 function closePopupEsc(evt) {
@@ -151,6 +175,7 @@ function closePopupButton(evt) {
   removeListenersAndClosePopup();
 }
 
+/*
 // Закрываем всплывающее окно кликом по оверлею
 function closePopupClick (evt) {
   if (evt.target.classList.contains('popup')) {
@@ -158,7 +183,7 @@ function closePopupClick (evt) {
     removeListenersAndClosePopup();
   }
 }
-
+*/
 
 
 
