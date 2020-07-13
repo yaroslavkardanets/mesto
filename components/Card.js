@@ -1,7 +1,6 @@
 import { openPopup, addListenersForOpenPopup } from '../pages/index.js';
 
-const previewImage = document.querySelector('.popup__preview');
-const titleImage = document.querySelector('.popup__title-image');
+
 const popupImage = document.querySelector('.popup_image');
 const closeImage = document.querySelector('.popup__close-button-image');
 
@@ -104,10 +103,10 @@ export class Card {
 }
 
 // Открываем попап просмотра фотографии
-function handlePreviewPicture(link, name) {
-  previewImage.src = link;
-  previewImage.alt = name;
-  titleImage.textContent = name;
+function handlePreviewPicture(/*link, name*/) {
+  // previewImage.src = link;
+  // previewImage.alt = name;
+  // titleImage.textContent = name;
   openPopup(popupImage);
   addListenersForOpenPopup(closeImage, popupImage);
 } 

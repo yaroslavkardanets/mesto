@@ -99,8 +99,22 @@ class Popup {
     this._popupSelector.removeEventListener('click', this._handleOverlayClose);
   }
 }
-// ************** class Popup ************** end //
+// end ************** class Popup ************** //
 
+
+// start ************** class PopupWithImage ************** //
+
+const previewImage = document.querySelector('.popup__preview');
+const titleImage = document.querySelector('.popup__title-image');
+
+ class PopupWithImage extends Popup {
+  open(link, name) {
+    previewImage.src = link;
+    previewImage.alt = name;
+    titleImage.textContent = name;
+    super.open();
+  }
+ }
 
 
 // Закрываем всплывающее окно кнопкой Esc
