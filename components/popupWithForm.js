@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
   }
 
+  // Получаем текущие значения
   _getInputValues() {
     this._popupInputs = this._popup.querySelectorAll('.popup__input');
     this._data = {};
@@ -25,9 +26,5 @@ export class PopupWithForm extends Popup {
 
   close() {
     super.close();
-  //   // this._popupInputs = this._popup.querySelectorAll('.popup__input');
-  //   //   this._popupInputs.forEach(input => {
-  //   //   input.value = '';
-  //   // }) 
   }
 }
