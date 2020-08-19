@@ -1,0 +1,23 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "\"Learning platform\"",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaroslavkardanets/mesto.git"
+  },
+  "author": "Yaroslav Kardanets",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaroslavkardanets/mesto/issues"
+  },
+  "homepage": "https://github.com/yaroslavkardanets/mesto#readme",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
