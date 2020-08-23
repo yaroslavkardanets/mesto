@@ -43,7 +43,7 @@ module.exports = {
       template: 'src/index.html'
     }),
     new MiniCssExtractPlugin()
-  ]
+  ],
   options: {
     presets: [
         '@babel/preset-env',
@@ -51,5 +51,5 @@ module.exports = {
             'plugins': ['@babel/plugin-proposal-class-properties']
           }
     ]
- }
+  }
 };
