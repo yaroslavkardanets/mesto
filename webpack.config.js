@@ -43,5 +43,13 @@ module.exports = {
       template: 'src/index.html'
     }),
     new MiniCssExtractPlugin()
-  ]
+  ],
+  options: {
+    presets: [
+        '@babel/preset-env',
+         {
+            'plugins': ['@babel/plugin-proposal-class-properties']
+          }
+    ]
+  }
 };
