@@ -2,6 +2,8 @@ export class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._popupCloseButton = this._popup.querySelector('.popup__close-button');
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this._handleOverlayClose = this._handleOverlayClose.bind(this);
     }
 
     // Общий метод открытия всплывающих окон
@@ -17,14 +19,14 @@ export class Popup {
     }
 
     // Закрываем кнопкой Esc
-    _handleEscClose = (evt) => {
+    _handleEscClose (evt) {
       if (evt.key === 'Escape') {
         this.close();
       }
     }
 
     // Закрываем кликом по оверлею
-    _handleOverlayClose = (evt) => {
+    _handleOverlayClose (evt) {
       if (evt.target.classList.contains('popup')) {
         this.close();
       }
