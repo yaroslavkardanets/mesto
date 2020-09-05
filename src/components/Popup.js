@@ -19,22 +19,14 @@ export class Popup {
     }
 
     // Закрываем кнопкой Esc
-<<<<<<< HEAD:src/components/Popup.js
     _handleEscClose (evt) {
-=======
-    _handleEscClose = (evt) => {
->>>>>>> 0bee2a9c0c1530258c89082eb48a5fe6a787594c:src/components/Popup.js
       if (evt.key === 'Escape') {
         this.close();
       }
     }
 
     // Закрываем кликом по оверлею
-<<<<<<< HEAD:src/components/Popup.js
     _handleOverlayClose (evt) {
-=======
-    _handleOverlayClose = (evt) => {
->>>>>>> 0bee2a9c0c1530258c89082eb48a5fe6a787594c:src/components/Popup.js
       if (evt.target.classList.contains('popup')) {
         this.close();
       }
