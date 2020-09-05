@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import './pages/index.css';
+=======
+>>>>>>> 0bee2a9c0c1530258c89082eb48a5fe6a787594c
 import { initialCards, Card } from './components/Card.js';
 import { FormValidator } from './components/FormValidator.js';
 import { Section } from './components/Section.js';
 import { UserInfo } from './components/UserInfo.js';
 import { PopupWithImage } from './components/PopupWithImage.js';
 import { PopupWithForm } from './components/PopupWithForm.js';
+<<<<<<< HEAD
+=======
+import './pages/index.css';
+>>>>>>> 0bee2a9c0c1530258c89082eb48a5fe6a787594c
 
 // *** Переменные *** //
 // переменные profile

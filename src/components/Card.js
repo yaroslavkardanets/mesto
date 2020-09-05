@@ -35,6 +35,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
   }
 
+  // Получаем шаблон создания карточки
   _getTemplate() {
     const cardElement = document
     .querySelector(this._cardSelector)
@@ -45,6 +46,7 @@ export class Card {
     return cardElement;
   }
 
+  // Создаем карточку
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.element__title').textContent = this._name;

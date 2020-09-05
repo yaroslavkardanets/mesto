@@ -4,13 +4,14 @@ export class UserInfo {
     this._occupation = document.querySelector(occupation);
   }
   
+  // Получаем текущие значения
   getUserInfo() {
-    console.log(this._title);
     return { 'title': this._title.textContent, 
     'occupation': this._occupation.textContent 
     }
   }
 
+  // Передаем новые значения
   setUserInfo({nameInput, profileOccupation}) {
     this._title.textContent = nameInput;
     this._occupation.textContent = profileOccupation;

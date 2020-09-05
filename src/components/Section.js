@@ -5,12 +5,14 @@ export class Section {
     this._container = document.querySelector(containerSelector);
   }
 
+  // Отрисовываем карточки
   renderCards() {
     this._items.forEach((item) => {
       this._renderer(item)
     });
   }
 
+  // Добавляем карточки
   addItem(element) {
     this._container.prepend(element);
   }
