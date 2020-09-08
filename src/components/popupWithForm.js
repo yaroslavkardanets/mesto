@@ -16,6 +16,7 @@ export class PopupWithForm extends Popup {
     return this._data;
   }
 
+  // Устанавливаем слушатели
   setEventListeners() {
     super.setEventListeners();
     this._popup.querySelector('.popup__container').addEventListener('submit', () => {

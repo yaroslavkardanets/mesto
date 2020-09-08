@@ -15,6 +15,7 @@ export class Popup {
     // Общий метод закрытия всплывающих окон
     close() {
       this._popup.classList.remove('popup-opened');
+      document.removeEventListener('keydown', this._handleEscClose);
     }
 
     // Закрываем кнопкой Esc
