@@ -7,7 +7,7 @@
 
 Место - это проект для тех кто хочет делиться фотографиями посещенных мест с другими. Простой и доступный функционал, лаконичный дизайн как раз то, что может привлечь большое количество пользователей и посетителей. 
 
-https://yaroslavkardanets.github.io/mesto//index.html
+https://yaroslavkardanets.github.io/mesto/index.html
 
 #### Использованые технологии
 HTML, CSS, JavaScript, Webpack.
